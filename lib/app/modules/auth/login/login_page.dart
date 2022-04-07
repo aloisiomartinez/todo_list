@@ -52,7 +52,7 @@ class LoginPage extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(20),
                                   )
                                 ),
-                                )
+                              )
                             ],
                           )
                         ],
@@ -87,7 +87,12 @@ class LoginPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text('Não tem conta?'),
-                              TextButton(onPressed: (){}, child: Text('Cadastra-se'))
+                              TextButton(
+                                onPressed: (){
+                                  Navigator.of(context).pushNamed('/register');
+                                }, 
+                                child: Text('Cadastra-se')
+                              )
                             ],
                           )
                         ],
