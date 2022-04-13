@@ -4,13 +4,33 @@ import 'package:todo_list/app/core/widget/todo_list_field.dart';
 import 'package:todo_list/app/core/widget/todo_list_logo.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+  RegisterPage({Key? key}) : super(key: key);
 
   @override
   _RegisterPageState createState() => _RegisterPageState();
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final _formKey = GlobalKey<FormState>();
+  final emailEC = TextEditingController();
+  final passwordlEC = TextEditingController();
+  final confirmPasswordEC = TextEditingController();
+
+  @override
+  void dispose() {
+    emailEC.dispose();
+    passwordlEC.dispose();
+    confirmPasswordEC.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,51 +64,59 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         ),
       ),
-      body: ListView(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.width * .5,
-            child: FittedBox(
-              child: TodoListLogo(),
-              fit: BoxFit.fitHeight,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-            child: Form(
-              child: Column(
-                children: [
-                  TodoListField(label: 'E-mail'),
-                  SizedBox(height: 20),
-                  TodoListField(
-                    label: 'Senha',
-                    obscureText: true,
-                  ),
-                  SizedBox(height: 20),
-                  TodoListField(
-                    label: 'Confirmar Senha',
-                    obscureText: true,
-                  ),
-                  SizedBox(height: 20),
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text('Salvar'),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      )),
-                    ),
-                  )
-                ],
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.width * .5,
+              child: FittedBox(
+                child: TodoListLogo(),
+                fit: BoxFit.fitHeight,
               ),
             ),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+              child: Form(
+                child: Column(
+                  children: [
+                    TodoListField(
+                      label: 'E-mail',
+                      controller: emailEC,
+                    ),
+                    SizedBox(height: 20),
+                    TodoListField(
+                      label: 'Senha',
+                      obscureText: true,
+                      controller: passwordlEC,
+                    ),
+                    SizedBox(height: 20),
+                    TodoListField(
+                      label: 'Confirmar Senha',
+                      obscureText: true,
+                      controller: confirmPasswordEC,
+                    ),
+                    SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text('Salvar'),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        )),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
