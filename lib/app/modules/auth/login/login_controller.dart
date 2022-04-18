@@ -28,4 +28,8 @@ class LoginController extends DefaultChangeNotifier {
       notifyListeners();
     }
   }
+
+  forgotPassword(TextEditingController emailEC) {
+    showLoadingAndResetState();
+  }
 }
