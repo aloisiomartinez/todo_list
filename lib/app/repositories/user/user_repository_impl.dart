@@ -57,7 +57,7 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<User?> forgotPassword(String email, String password) async {
+  Future<User?> forgotPassword(String email) async {
     try {
       final loginMethods = await _firebaseAuth.fetchSignInMethodsForEmail(email);
 

@@ -3,7 +3,6 @@ import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/app/core/notifier/default_listener_notifier.dart';
-import 'package:todo_list/app/core/validators/validators.dart';
 import 'package:todo_list/app/core/widget/todo_list_field.dart';
 import 'package:todo_list/app/core/widget/todo_list_logo.dart';
 import 'package:todo_list/app/modules/auth/login/login_controller.dart';
@@ -94,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                                   TextButton(
                                       onPressed: () {
                                         if(_emailEC.text.isNotEmpty) {
-                                          context.read<LoginController>().forgotPassword(_emailEC).text;
+                                          context.read<LoginController>().forgotPassword(_emailEC.text);
                                         } else {
                                           _emailFocus.requestFocus();
                                           Messages.of(context).showError('Digite um e-mail para recuperar a senha');
