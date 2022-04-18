@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:todo_list/app/core/exception/auth_exception.dart';
 import 'package:todo_list/app/core/notifier/default_change_notifier.dart';
-import 'package:todo_list/app/core/ui/messages.dart';
 import 'package:todo_list/app/services/user/user_service.dart';
 
 class LoginController extends DefaultChangeNotifier {
@@ -41,6 +39,8 @@ class LoginController extends DefaultChangeNotifier {
       notifyListeners();
       await _userService.forgotPassword(email);
       infoMessage = 'Reset de  senha enviado para seu e-mail';
+    }  on AuthException catch (e) {
+      setError(e.message);
     } catch (e) {
       setError('Erro ao resetar a senha');
     } finally {

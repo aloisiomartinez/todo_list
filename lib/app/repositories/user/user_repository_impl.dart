@@ -63,8 +63,11 @@ class UserRepositoryImpl implements UserRepository {
 
       if(loginMethods.contains('password')) {
         await _firebaseAuth.sendPasswordResetEmail(email: email);
-      } else {
+      } else if(loginMethods.contains('google')) {
         throw AuthException(message: 'Cadastro realizado com o google, a senha não pode ser resetada.');
+      } else {
+        throw AuthException(message: 'E-mail não cadastrado.');
+
       }
     } on PlatformException catch(e, s) {
       print(e);
