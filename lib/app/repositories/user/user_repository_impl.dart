@@ -50,7 +50,7 @@ class UserRepositoryImpl implements UserRepository {
     } on FirebaseAuthException catch (e, s) {
       print(e);
       print(s);
-      if(e.code == 'wrong-password') {
+      if (e.code == 'wrong-password') {
         throw AuthException(message: 'Login ou senha inválidos');
       }
       throw AuthException(message: e.message ?? 'Erro ao realizar login');
@@ -60,17 +60,19 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<void> forgotPassword(String email) async {
     try {
-      final loginMethods = await _firebaseAuth.fetchSignInMethodsForEmail(email);
+      final loginMethods =
+          await _firebaseAuth.fetchSignInMethodsForEmail(email);
 
-      if(loginMethods.contains('password')) {
+      if (loginMethods.contains('password')) {
         await _firebaseAuth.sendPasswordResetEmail(email: email);
-      } else if(loginMethods.contains('google')) {
-        throw AuthException(message: 'Cadastro realizado com o google, a senha não pode ser resetada.');
+      } else if (loginMethods.contains('google')) {
+        throw AuthException(
+            message:
+                'Cadastro realizado com o google, a senha não pode ser resetada.');
       } else {
         throw AuthException(message: 'E-mail não cadastrado.');
-
       }
-    } on PlatformException catch(e, s) {
+    } on PlatformException catch (e, s) {
       print(e);
       print(s);
       throw AuthException(message: 'Erro ao resetar senha!');
@@ -83,24 +85,27 @@ class UserRepositoryImpl implements UserRepository {
     try {
       final googleSignIn = GoogleSignIn();
       final googleUser = await googleSignIn.signIn();
-      if(googleUser != null) {
-        loginMethods = await _firebaseAuth.fetchSignInMethodsForEmail(googleUser.email);
+      if (googleUser != null) {
+        loginMethods =
+            await _firebaseAuth.fetchSignInMethodsForEmail(googleUser.email);
 
-        if(loginMethods.contains('password')) {
-          throw AuthException(message: 'Você utilizou o e-mail para cadastro no TodoList, caso tenha esquecido sua senha, por favor clique no link Esqueci minha senha.');
+        if (loginMethods.contains('password')) {
+          throw AuthException(
+              message:
+                  'Você utilizou o e-mail para cadastro no TodoList, caso tenha esquecido sua senha, por favor clique no link Esqueci minha senha.');
         } else {
           final googleAuth = await googleUser.authentication;
           final firebaseCredential = GoogleAuthProvider.credential(
-            accessToken: googleAuth.accessToken, idToken: googleAuth.idToken
-          );
-          var userCredencial = await _firebaseAuth.signInWithCredential(firebaseCredential);
+              accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+          var userCredencial =
+              await _firebaseAuth.signInWithCredential(firebaseCredential);
           return userCredencial.user;
         }
       }
-    } on FirebaseAuthException catch(e, s) {
+    } on FirebaseAuthException catch (e, s) {
       print(e);
       print(s);
-      if(e.code == 'account-exists-with-different-credential') {
+      if (e.code == 'account-exists-with-different-credential') {
         throw AuthException(message: '''
           Login inválido. Você se registrou no TodoList com os seguintes provedores:
           ${loginMethods?.join(',')}
@@ -109,5 +114,11 @@ class UserRepositoryImpl implements UserRepository {
         throw AuthException(message: 'Erro ao realizar login.');
       }
     }
+  }
+
+  @override
+  Future<void> googleLogout() async {
+    await GoogleSignIn().signOut();
+    _firebaseAuth.signOut();
   }
 }
