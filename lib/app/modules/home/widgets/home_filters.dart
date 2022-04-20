@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/app/core/ui/theme_extensions.dart';
+import 'package:todo_list/app/modules/home/widgets/todo_card_filter.dart';
 
 class HomeFilters extends StatefulWidget {
 
@@ -23,24 +24,12 @@ class _HomeFiltersState extends State<HomeFilters> {
              scrollDirection: Axis.horizontal,
              child: Row(
                children: [
-                 Container(
-                   color: Colors.red, width: 100, height: 100,
-                 ),
-                 Container(
-                   color: Colors.red, width: 100, height: 100,
-                 ),
-                 Container(
-                   color: Colors.red, width: 100, height: 100,
-                 ),
-                 Container(
-                   color: Colors.red, width: 100, height: 100,
-                 ),
-                 Container(
-                   color: Colors.red, width: 100, height: 100,
-                 ),
-                 Container(
-                   color: Colors.blue, width: 100, height: 100,
-                 )
+                 TodoCardFilter(),
+                 TodoCardFilter(),
+                 TodoCardFilter(),
+                 TodoCardFilter(),
+
+
                ],
              ),
            )
