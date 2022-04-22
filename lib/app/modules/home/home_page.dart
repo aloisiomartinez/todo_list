@@ -6,6 +6,8 @@ import 'package:todo_list/app/core/ui/todo_list_icons.dart';
 import 'package:todo_list/app/modules/home/widgets/home_drawer.dart';
 import 'package:todo_list/app/modules/home/widgets/home_filters.dart';
 import 'package:todo_list/app/modules/home/widgets/home_header.dart';
+import 'package:todo_list/app/modules/home/widgets/home_tasks.dart';
+import 'package:todo_list/app/modules/home/widgets/home_week_filter.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -16,7 +18,7 @@ class HomePage extends StatelessWidget {
        return Scaffold(
            appBar: AppBar(
              iconTheme: IconThemeData(color: context.primaryColor),
-             backgroundColor: Colors.transparent,
+             backgroundColor: Color(0xFFFAFBFE),
              elevation: 0,
              actions: [
                PopupMenuButton(
@@ -44,7 +46,9 @@ class HomePage extends StatelessWidget {
                          crossAxisAlignment: CrossAxisAlignment.start,
                          children: [
                            HomeHeader(),
-                           HomeFilters()
+                           HomeFilters(),
+                           HomeWeekFilter(),
+                           HomeTasks()
                          ],
                        ),
                      ),
