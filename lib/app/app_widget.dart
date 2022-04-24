@@ -7,6 +7,7 @@ import 'package:todo_list/app/modules/auth/auth_module.dart';
 import 'package:todo_list/app/modules/auth/login/login_page.dart';
 import 'package:todo_list/app/modules/home/home_module.dart';
 import 'package:todo_list/app/modules/splash/splash_page.dart';
+import 'package:todo_list/app/modules/tasks/tasks_module.dart';
 
 
 class AppWidget extends StatefulWidget {
@@ -40,7 +41,8 @@ class _AppWidgetState extends State<AppWidget> {
       navigatorKey: TodoListNavigator.navigatorKey,
       routes: {
         ...AuthModule().routers,
-        ...HomeModule().routers
+        ...HomeModule().routers,
+        ...TaskModule().routers
       },
       home: SplashPage(),
     );

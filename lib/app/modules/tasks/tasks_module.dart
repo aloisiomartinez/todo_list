@@ -5,12 +5,11 @@ import 'package:todo_list/app/modules/tasks/task_create_controller.dart';
 import 'package:todo_list/app/modules/tasks/task_create_page.dart';
 
 class TaskModule extends TodoListModule {
-  TaskModule(): super(
-    bindings:[
-      ChangeNotifierProvider(create: (context) => TaskCreateController())
-    ],
-    routers: {
-      '/task/create': (context) => TaskCreatePage()
-    },
-  );
+  TaskModule()
+      : super(
+          bindings: [
+            ChangeNotifierProvider(create: (context) => TaskCreateController())
+          ],
+          routers: {'/task/create': (context) => TaskCreatePage(controller: context.read(),)},
+        );
 }
