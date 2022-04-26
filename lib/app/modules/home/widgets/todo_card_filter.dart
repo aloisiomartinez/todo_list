@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/app/core/ui/theme_extensions.dart';
+import 'package:todo_list/app/models/task_filter_enum.dart';
 
-class TodoCardFilter extends StatefulWidget {
+class TodoCardFilter extends StatelessWidget {
+   final String label;
+   final TaskFilterEnum taskFilter;
 
-  const TodoCardFilter({ Key? key }) : super(key: key);
+   const TodoCardFilter({Key? key, required this.label, required this.taskFilter}) : super(key: key);
 
-  @override
-  State<TodoCardFilter> createState() => _TodoCardFilterState();
-}
-
-class _TodoCardFilterState extends State<TodoCardFilter> {
    @override
    Widget build(BuildContext context) {
        return Container(
@@ -32,7 +30,7 @@ class _TodoCardFilterState extends State<TodoCardFilter> {
                color: Colors.white
              ),
             ),
-            Text('HOJE', style: TextStyle(
+            Text(label, style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Colors.white
