@@ -7,11 +7,13 @@ class TodoCardFilter extends StatelessWidget {
   final String label;
   final TaskFilterEnum taskFilter;
   final TotalTaskModel? totalTasksModel;
+  final bool selected;
 
   const TodoCardFilter(
       {Key? key,
       required this.label,
       required this.taskFilter,
+      required this.selected,
       this.totalTasksModel})
       : super(key: key);
 
@@ -33,7 +35,7 @@ class TodoCardFilter extends StatelessWidget {
       margin: EdgeInsets.only(right: 10),
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-          color: context.primaryColor,
+          color: selected ? context.primaryColor : Colors.white,
           border: Border.all(width: 1, color: Colors.grey.withOpacity(.8)),
           borderRadius: BorderRadius.circular(30)),
       child: Column(
@@ -41,21 +43,25 @@ class TodoCardFilter extends StatelessWidget {
         children: [
           Text(
             '${totalTasksModel?.totalTasks ?? 0}',
-            style:
-                context.titleStyle.copyWith(fontSize: 10, color: Colors.white),
+            style: context.titleStyle.copyWith(
+                fontSize: 10, color: selected ? Colors.white : Colors.grey),
           ),
           Text(
             label,
             style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: selected ? Colors.white : Colors.black),
           ),
           TweenAnimationBuilder<double>(
             tween: Tween(begin: 0.0, end: _getPercentFinish()),
             duration: Duration(seconds: 1),
             builder: (context, value, child) {
               return LinearProgressIndicator(
-                backgroundColor: context.primaryColorLight,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                backgroundColor: selected ? context.primaryColorLight : Colors.grey.shade300,
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  selected ? Colors.white : context.primaryColor
+                ),
                 value: value,
               );
             },
