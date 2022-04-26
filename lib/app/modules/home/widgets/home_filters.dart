@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/app/core/ui/theme_extensions.dart';
 import 'package:todo_list/app/models/task_filter_enum.dart';
+import 'package:todo_list/app/models/total_tasks_model.dart';
 import 'package:todo_list/app/modules/home/widgets/todo_card_filter.dart';
 
 class HomeFilters extends StatelessWidget {
@@ -23,6 +24,7 @@ class HomeFilters extends StatelessWidget {
               TodoCardFilter(
                 label: 'HOJE',
                 taskFilter: TaskFilterEnum.today,
+                totalTasksModel: TotalTaskModel(totalTasks: 7, totalTasksFinished: 5),
               ),
               TodoCardFilter(
                 label: 'AMANHÃ',
