@@ -6,7 +6,7 @@ import 'package:todo_list/app/core/database/sqlite_migration_factory.dart';
 
 class SqliteConnectionFactory {
   static const _VERSION = 1;
-  static const _DATABASE_NAME = 'TODO_LIST_PROVIDER';
+  static const _DATABASE_NAME = 'todo_list_provider';
 
   static SqliteConnectionFactory? _instance;
 
