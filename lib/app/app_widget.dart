@@ -37,7 +37,7 @@ class _AppWidgetState extends State<AppWidget> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Todo List Providerr',
+      title: 'Todo List Provider',
       theme: TodoListUiConfig.theme,
       navigatorKey: TodoListNavigator.navigatorKey,
       localizationsDelegates: [
